@@ -1,5 +1,5 @@
 // Frontend encryption utilities
-export const CRYPTO_KEY = "7f9K2b$pQ!4z@1Yd"; 
+export const CRYPTO_KEY = "SAMPLE_KEY"; 
 
 export function encryptData(data) {
     // Convert data to JSON string
