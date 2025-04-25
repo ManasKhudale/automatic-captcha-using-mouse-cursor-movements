@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Security Configuration
-AES_KEY = b"7f9K2b$pQ!4z@1Yd" # Must match frontend key
+AES_KEY = b"SAMPLE_KEY" # Must match frontend key
 AES_IV_LENGTH = 16  # 16 bytes for AES-CBC
 
 # Load model with error handling
