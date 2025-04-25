@@ -14,7 +14,7 @@ The system now incorporates AES-256 encryption for all cursor data transmission,
 
 The database stores cursor movement data collected from both human users and bots to analyse differences in interaction behaviour. Each record[1] captures key attributes that help in detecting automated activity.
 Stored Attributes:
-•	Record Timestamp (s): Time elapsed since the session started, recorded by the system.
+•	Record Timestamp (s): Time elapsed since the session started, recorded by the system. \n
 •	Client Timestamp (s): Local timestamp recorded by the user’s device at the time of the event.
 •	Button State: Indicates whether a mouse button was pressed ("NoButton", "Left", or "Right").
 •	Cursor Action: Defines the type of interaction ("Move", "Pressed", or "Released").
