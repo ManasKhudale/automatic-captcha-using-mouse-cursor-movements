@@ -2,7 +2,7 @@
 class BotDetector {
   constructor() {
     // Security Configuration
-    this.CRYPTO_KEY = "7f9K2b$pQ!4z@1Yd"; // 32-byte AES key (must match backend)
+    this.CRYPTO_KEY = "SAMPLE_KEY"; // 32-byte AES key (must match backend)
     
     // Behavior Tracking
     this.hasMovement = false;
