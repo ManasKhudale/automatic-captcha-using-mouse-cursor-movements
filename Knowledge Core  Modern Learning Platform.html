@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Core | Modern Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f5f7fa; line-height: 1.6; }
+
+        body{
+            cursor: none; 
+        }
+        body.cursor-visible{
+            cursor: auto; 
+        }
+        
+        /* Navigation */
+        nav { 
+            background: #fff; padding: 1rem 5%; position: fixed; width: 100%; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.8rem; color: #2A5C82; font-weight: 800; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .nav-links a:hover { color: #2A5C82; transform: translateY(-2px); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 6rem; background: linear-gradient(135deg, #2A5C82 0%, #3A86B8 100%);
+            color: white; text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="%23ffffff20" fill="none" stroke-width="2"/></svg>');
+            opacity: 0.1;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 700; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .btn-primary {
+            background: #fff; color: #2A5C82; border: none; padding: 1.2rem 2.5rem; 
+            border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 1.2rem;
+            transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+        /* Courses Section */
+        .courses { padding: 5rem 5%; }
+        .section-title { text-align: center; color: #2A5C82; font-size: 2.5rem; margin-bottom: 3rem; }
+        .course-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; margin-top: 2rem;
+        }
+        .course-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: transform 0.3s;
+            position: relative;
+        }
+        .course-card:hover { transform: translateY(-10px); }
+        .course-image { height: 200px; background: #f0f0f0; position: relative; overflow: hidden; }
+        .course-image img { width: 100%; height: 100%; object-fit: cover; }
+        .course-content { padding: 1.5rem; }
+        .course-category { 
+            display: inline-block; background: #2A5C82; color: white; 
+            padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .course-meta { 
+            display: flex; justify-content: space-between; 
+            color: #666; font-size: 0.9rem; margin-top: 1rem;
+        }
+        .rating { color: #ffc107; }
+
+        /* Features Section */
+        .features { padding: 5rem 5%; background: #fff; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
+        .feature-card { text-align: center; padding: 2rem; }
+        .feature-icon { 
+            font-size: 2.5rem; color: #2A5C82; margin-bottom: 1.5rem; 
+            background: #e3f2fd; width: 80px; height: 80px; line-height: 80px;
+            border-radius: 50%; margin-left: auto; margin-right: auto;
+        }
+
+        /* Testimonials */
+        .testimonials { padding: 5rem 5%; background: #f8f9fa; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .testimonial-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            perspective: 1000px;
+        }
+        .testimonial-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .testimonial-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card-front {
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .card-back {
+            background: #2c3e50;
+            color: white;
+            transform: rotateY(180deg);
+            border-radius: 10px;
+        }
+
+        /* Pricing Section */
+        .pricing { padding: 5rem 5%; background: #fff; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .pricing-card {
+            background: white; padding: 2rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center;
+        }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .pricing-card .price { font-size: 2.5rem; color: #2A5C82; margin-bottom: 1.5rem; }
+        .pricing-card ul { list-style: none; margin-bottom: 2rem; }
+        .pricing-card ul li { margin-bottom: 0.5rem; }
+        .pricing-card .btn-primary { width: 100%; }
+
+        /* Blog Section */
+        .blog { padding: 5rem 5%; background: #f8f9fa; }
+        .blog-grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .blog-card {
+            background: white; padding: 1.5rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s;
+        }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
+        .blog-category { 
+            display: inline-block; background: #007bff; color: white; 
+            padding: 5px 10px; border-radius: 5px; font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .blog-meta { 
+            display: flex; justify-content: space-between; 
+            color: #777; font-size: 0.9rem; margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact { padding: 5rem 5%; text-align: center; }
+        .contact-card {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .contact-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .contact-category { 
+            display: inline-block; background: #007bff; color: white; 
+            padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .contact-meta { 
+            display: flex; flex-direction: column; gap: 0.5rem; 
+            margin: 1rem 0; color: #444;
+        }
+
+        /* Footer */
+        footer {
+            background: #2A5C82; color: white; padding: 5rem 5%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;
+        }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+        .newsletter input { 
+            padding: 0.8rem; border-radius: 25px 0 0 25px; border: none; 
+            width: 70%; margin-top: 1rem;
+        }
+        .newsletter button { 
+            padding: 0.8rem 1.5rem; border-radius: 0 25px 25px 0; border: none;
+            background: #3A86B8; color: white; cursor: pointer; transition: all 0.3s;
+        }
+        .newsletter button:hover { background: #2c6a8f; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-links a { color: white; font-size: 1.5rem; transition: all 0.3s; }
+        .social-links a:hover { color: #aad4f5; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; position: absolute; top: 100%; left: 0; 
+                width: 100%; background: white; padding: 1rem; text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; flex-direction: column; gap: 1.5rem; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Core | Modern Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f5f7fa; line-height: 1.6; }
+        
+        /* Navigation */
+        nav { 
+            background: #fff; padding: 1rem 5%; position: fixed; width: 100%; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.8rem; color: #2A5C82; font-weight: 800; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .nav-links a:hover { color: #2A5C82; transform: translateY(-2px); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 6rem; background: linear-gradient(135deg, #2A5C82 0%, #3A86B8 100%);
+            color: white; text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="%23ffffff20" fill="none" stroke-width="2"/></svg>');
+            opacity: 0.1;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 700; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .btn-primary {
+            background: #fff; color: #2A5C82; border: none; padding: 1.2rem 2.5rem; 
+            border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 1.2rem;
+            transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+        /* Courses Section */
+        .courses { padding: 5rem 5%; }
+        .section-title { text-align: center; color: #2A5C82; font-size: 2.5rem; margin-bottom: 3rem; }
+        .course-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; margin-top: 2rem;
+        }
+        .course-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: transform 0.3s;
+            position: relative;
+        }
+        .course-card:hover { transform: translateY(-10px); }
+        .course-image { height: 200px; background: #f0f0f0; position: relative; overflow: hidden; }
+        .course-image img { width: 100%; height: 100%; object-fit: cover; }
+        .course-content { padding: 1.5rem; }
+        .course-category { 
+            display: inline-block; background: #2A5C82; color: white; 
+            padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .course-meta { 
+            display: flex; justify-content: space-between; 
+            color: #666; font-size: 0.9rem; margin-top: 1rem;
+        }
+        .rating { color: #ffc107; }
+
+        /* Features Section */
+        .features { padding: 5rem 5%; background: #fff; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
+        .feature-card { text-align: center; padding: 2rem; }
+        .feature-icon { 
+            font-size: 2.5rem; color: #2A5C82; margin-bottom: 1.5rem; 
+            background: #e3f2fd; width: 80px; height: 80px; line-height: 80px;
+            border-radius: 50%; margin-left: auto; margin-right: auto;
+        }
+
+        /* Testimonials */
+        .testimonials { padding: 5rem 5%; background: #f8f9fa; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .testimonial-card {
+            background: white; padding: 2rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); position: relative;
+        }
+        .testimonial-card::before {
+            content: '"'; position: absolute; top: -20px; left: 20px;
+            font-size: 4rem; color: #2A5C82; opacity: 0.2;
+        }
+        .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.testimonial-card {
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.testimonial-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: white;
+    text-align: center;
+}
+
+.card-front {
+    background: #f9f9f9;
+}
+
+.card-back {
+    background: #2c3e50;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.rating {
+    color: gold;
+    font-size: 18px;
+}
+
+        /* Pricing Section */
+        .pricing { padding: 5rem 5%; background: #fff; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .pricing-card {
+            background: white; padding: 2rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center;
+        }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .pricing-card .price { font-size: 2.5rem; color: #2A5C82; margin-bottom: 1.5rem; }
+        .pricing-card ul { list-style: none; margin-bottom: 2rem; }
+        .pricing-card ul li { margin-bottom: 0.5rem; }
+        .pricing-card .btn-primary { width: 100%; }
+
+        /* Blog Section */
+        .blog { padding: 5rem 5%; background: #f8f9fa; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .blog-card {
+            background: white; padding: 1.5rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); position: relative;
+        }
+        .blog-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
+        .blog-card h3 { margin-top: 1rem; font-size: 1.3rem; }
+        .blog-card p { margin-top: 0.5rem; color: #666; }
+        .blog-card a { 
+            display: inline-block; margin-top: 1rem; color: #2A5C82; 
+            text-decoration: none; font-weight: 600;
+        }
+        .blog-card a:hover { text-decoration: underline; }
+
+        /* Footer */
+        footer {
+            background: #2A5C82; color: white; padding: 5rem 5%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;
+        }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+        .newsletter input { 
+            padding: 0.8rem; border-radius: 25px 0 0 25px; border: none; 
+            width: 70%; margin-top: 1rem;
+        }
+        .newsletter button { 
+            padding: 0.8rem 1.5rem; border-radius: 0 25px 25px 0; border: none;
+            background: #3A86B8; color: white; cursor: pointer; transition: all 0.3s;
+        }
+        .newsletter button:hover { background: #2c6a8f; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-links a { color: white; font-size: 1.5rem; transition: all 0.3s; }
+        .social-links a:hover { color: #aad4f5; transform: translateY(-3px); }
+
+        .testimonial-card {
+         background: #fff;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+         text-align: center;
+        }
+
+        .testimonial-card img {
+          width: 70px;
+         height: 70px;
+           border-radius: 50%;
+         margin-bottom: 10px;
+        }
+
+        .rating {
+         color: gold;
+         font-size: 18px;
+        }
+        .blog {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f5f5f5;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 20px;
+}
+
+.blog-category {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.blog-meta {
+    font-size: 14px;
+    color: #777;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.blog-content h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.blog-content a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.blog-content a:hover {
+    color: #007bff;
+}
+.contact-card {
+        width: 400px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        text-align: center;
+        margin: 20px auto;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .contact-content {
+        padding: 20px;
+    }
+
+    .contact-category {
+        display: inline-block;
+        background: #007bff;
+        color: #fff;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+
+    .contact-content h3 {
+        font-size: 24px;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .contact-content p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .contact-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .contact-meta a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .contact-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background 0.3s;
+    }
+
+    .contact-button:hover {
+        background: #0056b3;
+    }
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; position: absolute; top: 100%; left: 0; 
+                width: 100%; background: white; padding: 1rem; text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; flex-direction: column; gap: 1.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Knowledge Core</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Transform Your Learning Experience</h1>
+        <p>AI-driven personalized courses, gamification, and real-time collaboration</p>
+        <button class="btn-primary">Start Learning Now</button>
+    </section>
+
+    <section class="courses" id="courses">
+        <h2 class="section-title">Featured Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D5612AQEleUdlkXCu9g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1701446787595?e=2147483647&v=beta&t=gNLQgOrJEDlO7xKUo_GyAal8PK-rYfZbCjYTXnsQCTs" alt="UI/UX Design">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Design</span>
+                    <h3>Advanced UI/UX Design</h3>
+                    <p>Master Figma, Adobe XD, and user research techniques through real-world projects.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.5)</span>
+                        <span>🕒 32 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://miro.medium.com/v2/resize:fit:1200/1*V-Jp13LvtVc2IiY2fp4qYw.jpeg" alt="Web Development">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Development</span>
+                    <h3>Full-Stack Web Development</h3>
+                    <p>Master front-end and back-end technologies including React, Node.js, and databases.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.6)</span>
+                        <span>🕒 60 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://cdn.prod.website-files.com/63ccf2f0ea97be12ead278ed/644a18b637053fa3709c5ba2_what-is-data-science.jpg" alt="Data Science">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Data Science</span>
+                    <h3>Data Science Bootcamp</h3>
+                    <p>Learn Python, Machine Learning, and AI-driven data analysis techniques.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★★ (4.9)</span>
+                        <span>🕒 50 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkUFmp5jSF-DhrD5102bzHU7RbidetfqYfA&s" alt="Artificial Intelligence">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">AI & Machine Learning</span>
+                    <h3>AI & Deep Learning Masterclass</h3>
+                    <p>Learn neural networks, deep learning, and AI model deployment with TensorFlow.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★★ (4.9)</span>
+                        <span>🕒 65 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://www.techmango.net/wp-content/uploads/2022/04/mobile-app-development.png" alt="Mobile App Development">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Development</span>
+                    <h3>iOS & Android App Development</h3>
+                    <p>Build high-performance mobile apps using Flutter, React Native, and Swift.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.7)</span>
+                        <span>🕒 50 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://www.elprocus.com/wp-content/uploads/Blockchain-Seminar-Topics-for-Engineering-Students.jpg" alt="Blockchain">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Finance & Tech</span>
+                    <h3>Blockchain & Crypto Mastery</h3>
+                    <p>Understand smart contracts, NFTs, and crypto trading with Solidity & Ethereum.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★★ (4.8)</span>
+                        <span>🕒 48 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://www.springboard.com/blog/wp-content/uploads/2022/06/what-is-digital-marketing.png" alt="Digital Marketing">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Marketing</span>
+                    <h3>Digital Marketing Pro</h3>
+                    <p>Master SEO, social media marketing, and PPC advertising strategies.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.6)</span>
+                        <span>🕒 30 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDNA7IOJVgY4ZyplfFirFIE6wiNakM3H9Dsw&s" alt="Ethical Hacking">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Cybersecurity</span>
+                    <h3>Ethical Hacking & Pen Testing</h3>
+                    <p>Master ethical hacking, penetration testing, and security tools like Kali Linux.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.7)</span>
+                        <span>🕒 55 Hours</span>
+                    </div>
+                </div>
+            </div>
+                <div class="course-card">
+                <div class="course-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D5612AQERw7-m6vjS8g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690116406938?e=2147483647&v=beta&t=Y_oqs8ABuAedX_oPD142q2HEbcNcbBadoYiDCUboP2o" alt="Game Development">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Development</span>
+                    <h3>Game Development Pro</h3>
+                    <p>Create AAA games with Unity, Unreal Engine, and advanced game physics.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★★ (4.8)</span>
+                        <span>🕒 45 Hours</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://omdia.tech.informa.com/-/media/tech/omdia/omdia-website-enhancement-oct-2023/iot-coverage-2.jpg?rev=4fa2eb28f841448c9d126f911019398f" alt="IoT">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Hardware</span>
+                    <h3>IoT Masterclass</h3>
+                    <p>Build smart devices with Raspberry Pi, Arduino, and AWS IoT Core.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★☆ (4.3)</span>
+                        <span>🕒 28 Hours</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://www.barings.com/globalassets/2-assets/campaigns/heroes/security-fraud-hero.jpg" alt="Cybersecurity">
+                </div>
+                <div class="course-content">
+                    <span class="course-category">Security</span>
+                    <h3>Cybersecurity Essentials</h3>
+                    <p>Learn ethical hacking, network security, and threat management.</p>
+                    <div class="course-meta">
+                        <span class="rating">★★★★★ (4.9)</span>
+                        <span>🕒 40 Hours</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI-Powered Learning</h3>
+                <p>Adaptive learning paths personalized to your goals and progress</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Gamified Experience</h3>
+                <p>Earn achievements, badges, and compete on leaderboards</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Live Collaboration</h3>
+                <p>Real-time coding environments and group projects</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                <h3>Certifications</h3>
+                <p>Industry-recognized certificates upon completion</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Interactive Learning</h3>
+                <p>Practice coding in real-time with hands-on projects and exercises.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry professionals with real-world experience.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>Personalized Learning Paths</h3>
+                <p>Customized courses tailored to your skill level and goals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                <h3>Hands-On Projects</h3>
+                <p>Apply your knowledge by building real-world projects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-video"></i></div>
+                <h3>Live Webinars & Q&A</h3>
+                <p>Join live sessions with experts for deeper insights and discussions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Career Guidance</h3>
+                <p>Get job placement support, resume building, and interview prep.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$29<span>/month</span></div>
+                <ul>
+                    <li>Access to 10 Courses</li>
+                    <li>Community Support</li>
+                    <li>Basic Certificates</li>
+                </ul>
+                <button class="btn-primary">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Pro</h3>
+                <div class="price">$59<span>/month</span></div>
+                <ul>
+                    <li>Access to All Courses</li>
+                    <li>Priority Support</li>
+                    <li>Professional Certificates</li>
+                </ul>
+                <button class="btn-primary">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <ul>
+                    <li>Custom Learning Paths</li>
+                    <li>Dedicated Support</li>
+                    <li>Enterprise Certificates</li>
+                </ul>
+                <button class="btn-primary">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    </section>
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">Student Success Stories</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://img.freepik.com/free-photo/young-people-getting-their-kite-up_23-2149233235.jpg" alt="Sarah Johnson">
+                        <h4>Sarah Johnson</h4>
+                        <p>Full-Stack Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"Knowledge Core transformed my career. Landed a developer job within 6 months!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD3MMz_nvqayrRj2KzLT5A3rjgToNpmit81A&s" alt="Alex Turner">
+                        <h4>Alex Turner</h4>
+                        <p>Game Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The Game Development Pro course helped me build my own indie game studio!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://media.istockphoto.com/id/1388648617/photo/confident-caucasian-young-man-in-casual-denim-clothes-with-arms-crossed-looking-at-camera.jpg?s=612x612&w=0&k=20&c=YxctPklAOJMmy6Tolyvn45rJL3puk5RlKt39FO46ZeA=" alt="James Carter">
+                        <h4>James Carter</h4>
+                        <p>Cybersecurity Specialist</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The cybersecurity course was game-changing. I passed my CEH exam on the first try!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://media.istockphoto.com/id/1326417862/photo/young-woman-laughing-while-relaxing-at-home.jpg?s=612x612&w=0&k=20&c=cd8e6RBGOe4b8a8vTcKW0Jo9JONv1bKSMTKcxaCra8c=" alt="Jessica Williams">
+                        <h4>Jessica Williams</h4>
+                        <p>AI & ML Engineer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The AI course was packed with real-world projects. Now I work on AI models daily!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://static.vecteezy.com/system/resources/previews/035/814/723/non_2x/ai-generated-portrait-of-handsome-businessman-wearing-white-shirt-isolated-gray-background-ai-generated-free-photo.jpg" alt="Daniel Roberts">
+                        <h4>Daniel Roberts</h4>
+                        <p>Mobile App Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The mobile app development course helped me launch my first app on the Play Store!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://media.istockphoto.com/id/1088909778/photo/portrait-of-handsome-smiling-young-man-studio-shot.jpg?s=612x612&w=0&k=20&c=989h9CKzvxQ7-hXUnl7sNeIjJZYkiys7re7083JT4Es=" alt="Chris Anderson">
+                        <h4>Chris Anderson</h4>
+                        <p>Web Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The structured learning path made web development easy. Now I freelance full-time!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://thumbs.dreamstime.com/b/portrait-serious-young-business-woman-wearing-white-shirt-looking-to-you-camera-isolated-background-one-single-person-neutral-178602244.jpg" alt="Sophia Martinez">
+                        <h4>Sophia Martinez</h4>
+                        <p>Python Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The Python Mastery course gave me the confidence to work on real-world projects. Now I work as a backend developer!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcUGANJj7-s4nCF4HqSE1UZhFNyAEbU0LKVg&s" alt="Ethan Wilson">
+                        <h4>Ethan Wilson</h4>
+                        <p>Cloud Engineer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"Thanks to the AWS & Cloud Computing course, I became AWS Certified and landed a cloud engineer job!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://assets.entrepreneur.com/content/3x2/2000/20161214164224-GettyImages-533978993.jpeg" alt="Olivia Adams">
+                        <h4>Olivia Adams</h4>
+                        <p>UI/UX Designer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The UI/UX Design course was incredible! The projects helped me build a portfolio that landed me my first design job!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://st2.depositphotos.com/1662991/43758/i/450/depositphotos_437580158-stock-photo-happy-hispanic-young-guy-his.jpg" alt="Ryan Thompson">
+                        <h4>Ryan Thompson</h4>
+                        <p>Blockchain Developer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"I learned Solidity and built my own smart contracts in the Blockchain Development course. Now I work in DeFi!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half/public/field_blog_entry_images/shutterstock_105623048_0.jpg?itok=mOnLl-Xk" alt="Emily White">
+                        <h4>Emily White</h4>
+                        <p>Data Analyst</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The Data Science Bootcamp gave me hands-on experience with SQL, Python, and Tableau. I got my first analyst job!"</p>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://st4.depositphotos.com/1662991/31514/i/450/depositphotos_315146284-stock-photo-portrait-handsome-smiling-latin-man.jpg" alt="Michael Chen">
+                        <h4>Michael Chen</h4>
+                        <p>UI/UX Designer</p>
+                    </div>
+                    <div class="card-back">
+                        <p>"The hands-on projects prepared me better than my college degree."</p>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog" id="blog">
+        <h2 class="section-title">Latest Articles & Insights</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbOq0uapFX3DBHJKOZR8h3-ETxxJXhGNPcfQ&s" alt="AI in Web Development">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Artificial Intelligence</span>
+                    <h3><a href="#">How AI is Transforming Web Development</a></h3>
+                    <p>Discover how AI-powered tools are making coding more efficient and reducing development time.</p>
+                    <div class="blog-meta">
+                        <span>📅 Feb 10, 2025</span>
+                        <span>🕒 5 min read</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc5n-Cxa04HP5rC2-lXWJptpfXWPQchvn8ZQ&s" alt="Cybersecurity Trends">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Cybersecurity</span>
+                    <h3><a href="#">Top Cybersecurity Trends to Watch in 2025</a></h3>
+                    <p>Stay ahead of security threats with these emerging trends in ethical hacking and cybersecurity.</p>
+                    <div class="blog-meta">
+                        <span>📅 Jan 25, 2025</span>
+                        <span>🕒 7 min read</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSMynKiFkd3-kRCgMWs7wUrmD6LWm0bWHZEg&s" alt="Cloud Computing">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Cloud Computing</span>
+                    <h3><a href="#">Why Businesses Are Moving to Serverless Architecture</a></h3>
+                    <p>Understand how serverless computing is shaping the future of cloud-based applications.</p>
+                    <div class="blog-meta">
+                        <span>📅 Jan 18, 2025</span>
+                        <span>🕒 6 min read</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://i0.wp.com/hyperhci.com/wp-content/uploads/2023/01/Blockchain-Future-in-Financial-Services.jpg?fit=1073%2C699&ssl=1" alt="Blockchain in Finance">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Blockchain</span>
+                    <h3><a href="#">The Future of Finance with Blockchain Technology</a></h3>
+                    <p>Explore how blockchain is reshaping financial transactions, security, and decentralization.</p>
+                    <div class="blog-meta">
+                        <span>📅 Dec 30, 2024</span>
+                        <span>🕒 8 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-card">
+        <div class="contact-image">
+            <img src="https://media.istockphoto.com/id/1365543480/video/contact-us-concept.jpg?s=640x640&k=20&c=G16GzQ4uJKlITww2ArmKNB9UKb1-IT2eyJrUxkUmAIY=" alt="Contact Us">
+        </div>
+        <div class="contact-content">
+            <span class="contact-category">Get in Touch</span>
+            <h3>We're Here to Help</h3>
+            <div class="contact-meta">
+                <span>📧 Email: <a href="mailto:support@knowledgecore.com">support@knowledgecore.com</a></span>
+                <span>📞 Phone: <a href="tel:+11234567890">+1 (123) 456-7890</a></span>
+                <span>📍 Address: 123 Learning St, Tech City</span>
+            </div>
+            <button class="btn-primary">Send Message</button>
+        </div>
+    </div>
+</section>
+<script src="bot-detection.js"></script>
+<script src="button-interceptor.js"></script>
+<!-- <script type = "module" src="crypto-utils.js"></script> -->
+<script>
+  // Initialize after both scripts are loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.BotDetector && window.ButtonInterceptor) {
+      console.log('Bot detection system initialized');
+    } else {
+      console.error('Failed to initialize bot detection');
+    }
+  });
+</script>
+</section>
+</body></html>
