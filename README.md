@@ -1,4 +1,4 @@
-# automatic-captcha-using-mouse-cursor-movements
+# Automatic Captcha Using Mouse Cursor Movements
 
 Traditional CAPTCHA mechanisms, such as text-based CAPTCHAs[3], image recognition challenges, and checkbox verifications, are becoming increasingly ineffective against modern automated attacks. Many bots can now bypass these security measures using OCR (Optical Character Recognition), AI-powered solvers[2], and CAPTCHA farms. Additionally, these CAPTCHAs often create poor user experiences, leading to frustration and accessibility issues.
 This project introduces a machine learning-based alternative that authenticates users by analyzing natural cursor movement patterns instead of relying on static challenges. By tracking attributes such as:
